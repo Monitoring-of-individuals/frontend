@@ -6,13 +6,14 @@ import Footer from '../Footer/Footer';
 const App: FC = (): React.ReactElement => {
   return (
     <>
-      <Header/>
+      <Header />
       <Routes>
-        <Route path='/' element={<></>}/>
+        {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+        <Route path="/" element={<></>} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
-  )
-}
+  );
+};
 
 export default App;
