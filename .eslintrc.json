@@ -40,8 +40,8 @@
       }
     ],
     "arrow-body-style": [
-      "error",
-      "always"
+      0,
+      "never"
     ],
     "react/button-has-type": [
       "error",
