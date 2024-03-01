@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import MainPage from '../../pages/MainPage/MainPage';
 
 const App: FC = (): React.ReactElement => {
   return (
@@ -9,7 +10,7 @@ const App: FC = (): React.ReactElement => {
       <Header />
       <Routes>
         {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-        <Route path="/" element={<></>} />
+        <Route path="/" element={<MainPage/>} />
       </Routes>
       <Footer />
     </>
