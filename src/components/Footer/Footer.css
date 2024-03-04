@@ -1,0 +1,41 @@
+.footer {
+  background-color: #848484;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__container {
+  max-width: 1440px;
+  margin: 0 0 0 57px;
+  padding: 31px 0;
+}
+
+.footer__links {
+  margin: 0;
+  padding: 0;
+}
+
+.footer__link {
+  list-style: none;
+  font-weight: 600;
+  font-size: 20px;
+  color: #fff;
+}
+
+.footer__link:first-child {
+  margin-bottom: 10px;
+}
+
+.footer__link-policy {
+  font-weight: 600;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer__link-mail {
+  margin-left: 40px;
+  font-weight: 400;
+  text-decoration: none;
+  color: #fff;
+}
