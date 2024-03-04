@@ -4,11 +4,7 @@
     "es2021": true,
     "jest": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "airbnb",
-    "prettier"
-  ],
+  "extends": ["plugin:react/recommended", "airbnb", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -17,10 +13,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "import/extensions": [
       "error",
@@ -39,10 +32,7 @@
         "namedComponents": "arrow-function"
       }
     ],
-    "arrow-body-style": [
-      "error",
-      "always"
-    ],
+    "arrow-body-style": [0, "never"],
     "react/button-has-type": [
       "error",
       {
@@ -58,40 +48,25 @@
         "singleline": "consistent"
       }
     ],
-    "react/jsx-equals-spacing": [
-      "error",
-      "never"
-    ],
+    "react/jsx-equals-spacing": ["error", "never"],
     "react/jsx-no-duplicate-props": [
       "error",
       {
         "ignoreCase": false
       }
     ],
-    "react/hook-use-state": [
-      "error"
-    ],
-    "react/jsx-indent": [
-      "warn",
-      2
-    ],
+    "react/hook-use-state": ["error"],
+    "react/jsx-indent": ["warn", 2],
     "react/react-in-jsx-scope": 0,
-    "react/jsx-indent-props": [
-      2,
-      "tab"
-    ],
+    "react/jsx-indent-props": [2, "tab"],
     "react/jsx-filename-extension": [
       "error",
       {
-        "extensions": [
-          ".jsx",
-          ".tsx"
-        ]
+        "extensions": [".jsx", ".tsx"]
       }
     ],
-    "no-use-before-define": [
-      0
-    ],
+    "no-use-before-define": [0],
+    "default-param-last": "off",
     "react/display-name": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/explicit-member-accessibility": 0,
@@ -106,7 +81,14 @@
         "argsIgnorePattern": "^_"
       }
     ],
-    "no-console": "error",
+    "no-console": "off",
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(warn|error|info|trace)$/]",
+        "message": "Unexpected property on console object was called"
+      }
+    ],
     "import/prefer-default-export": 1,
     "no-shadow": 1,
     "prefer-const": 1,
@@ -124,25 +106,23 @@
       "error",
       {
         "props": true,
-        "ignorePropertyModificationsFor": [
-          "state"
-        ]
+        "ignorePropertyModificationsFor": ["state"]
       }
-    ]
+    ],
+
+    "linebreak-style": "off", // Неправильно работает в Windows.
+    "arrow-parens": "off", // Несовместимо с prettier
+    "object-curly-newline": "off", // Несовместимо с prettier
+    "no-mixed-operators": "off", // Несовместимо с prettier
+    "function-paren-newline": "off", // Несовместимо с prettier
+    "space-before-function-paren": 0, // Несовместимо с prettier
+    "no-alert": "error" // airbnb использует предупреждение
   },
   "settings": {
     "import/resolver": {
       "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ],
-        "moduleDirectory": [
-          "node_modules",
-          "src/"
-        ]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
       }
     }
   }
