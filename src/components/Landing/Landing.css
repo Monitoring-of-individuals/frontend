@@ -42,6 +42,22 @@
   color: #000;
 }
 
+.landing__btn {
+  border-radius: 20px;
+  padding: 16px 0px;
+  width: 483px;
+  height: 55px;
+  background: #e0e0e0;
+  font-weight: 500;
+  font-size: 20px;
+  color: #000;
+  border: none;
+}
+
+.landing__btn:hover {
+  cursor: pointer;
+}
+
 .landing__form-image {
   max-width: 622px;
   max-height: 530px;
