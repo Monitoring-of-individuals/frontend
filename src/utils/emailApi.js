@@ -1,6 +1,6 @@
-import emailjs from "@emailjs/browser";
+import emailjs from '@emailjs/browser';
 
-import apiKeys from "./apikeys";
+import apiKeys from './apikeys';
 
 const sendEmail = (topic, emailAdress, message) => {
   emailjs
@@ -8,23 +8,25 @@ const sendEmail = (topic, emailAdress, message) => {
       apiKeys.SERVICE_ID,
       apiKeys.TEMPLATE_ID,
       {
-        topic: topic,
+        topic,
         adress: emailAdress,
-        message: message,
+        message,
       },
       {
         publicKey: apiKeys.PUBLIC_KEY,
         blockList: {
-          watchVariable: "message",
+          watchVariable: 'message',
         },
       }
     )
     .then(
       (response) => {
-        console.log("SUCCESS!", response.status, response.text);
+        // eslint-disable-next-line no-restricted-syntax
+        console.log('SUCCESS!', response.status, response.text);
       },
       (err) => {
-        console.log("FAILED...", err);
+        // eslint-disable-next-line no-restricted-syntax
+        console.log('FAILED...', err);
       }
     );
 };
