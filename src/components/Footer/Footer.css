@@ -1,13 +1,17 @@
 .footer {
-  background-color: #848484;
+  background: #f8f8f8;
+  border-top: 1px solid #e0e0e0;
   margin: 0;
   padding: 0;
 }
 
 .footer__container {
   max-width: 1440px;
-  margin: 0 0 0 57px;
-  padding: 31px 0;
+  margin: 0 auto;
+  padding: 44px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .footer__links {
@@ -17,25 +21,22 @@
 
 .footer__link {
   list-style: none;
-  font-weight: 600;
-  font-size: 20px;
-  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  color: #586fc1;
 }
 
-.footer__link:first-child {
-  margin-bottom: 10px;
+.footer__link:nth-child(2) {
+  margin-top: 10px;
 }
 
-.footer__link-policy {
-  font-weight: 600;
-  font-size: 20px;
-  color: #fff;
+.footer__link-terms, .footer__link-mail {
   text-decoration: none;
+  font-weight: 400;
+  font-size: 18px;
+  color: #586fc1;
 }
 
 .footer__link-mail {
-  margin-left: 40px;
-  font-weight: 400;
-  text-decoration: none;
-  color: #fff;
+  margin-left: 20px;
 }
