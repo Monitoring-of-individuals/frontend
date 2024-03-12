@@ -5,27 +5,24 @@ const About: FC = (): React.ReactElement => {
   return (
     <section className='about'>
       <div className='about__container'>
-        <h2 className='about__title'>О сервисе</h2>
+        <h2 className='about__title'>Кого можно проверить</h2>
         <div className='about__columns'>
           <div className='about__column'>
-            <h3 className='about__column-title'>Помогаем быть уверенными в своих партнерах и сотрудниках</h3>
-            <p className='about__column-text'>Узнайте информацию о водителе, индивидуальном предпринимателе, новом сотруднике,</p>
-            <div className='about__image-wrapper'>
-              <img src='' alt='картинка в колонке' className='about__image-img'/>
+            <div className='about__column-container'>
+              <h3 className='about__column-title'>Сотрудника</h3>
+              <p className='about__column-text'>Не находится в розыске,не имеет долгов</p>
             </div>
           </div>
           <div className='about__column'>
-            <h3 className='about__column-title'>Информация из государственных открытых источников</h3>
-            <p className='about__column-text'>Получайте актуальную информацию из надежных баз данных</p>
-            <div className='about__image-wrapper'>
-              <img src='' alt='картинка в колонке' className='about__image-img'/>
+            <div className='about__column-container'>
+              <h3 className='about__column-title'>Водителя</h3>
+              <p className='about__column-text'>Не лишён ли водительских прав, не имеет серьезных нарушений ПДД</p>
             </div>
           </div>
           <div className='about__column'>
-            <h3 className='about__column-title'>Быстрое получение данных в удобном формате</h3>
-            <p className='about__column-text'>Удобная форма ввода и вывода данных отчета, как с компьютера так и с телефона</p>
-            <div className='about__image-wrapper'>
-              <img src='' alt='картинка в колонке' className='about__image-img'/>
+            <div className='about__column-container'>
+              <h3 className='about__column-title'>Самозанятого</h3>
+              <p className='about__column-text'>Есть статус самозанятого, не находится в розыске, нет задолженностей</p>
             </div>
           </div>
         </div>
