@@ -20,7 +20,8 @@ const RequestForm = () => {
     mode: 'all',
   });
   // eslint-disable-next-line no-unused-vars
-  const [data, setData] = useState('');
+  //  const [selectedDate, setSelectedDate] = useState(null);
+
   // eslint-disable-next-line no-unused-vars
   const [todayDate, setTodayDate] = useState(new Date());
 
@@ -33,7 +34,12 @@ const RequestForm = () => {
   };
 
   const onSubmit = (data) => {
-    return JSON.stringify(data);
+    // eslint-disable-next-line no-param-reassign
+    data.dateOfBirth = data.dateOfBirth.toLocaleDateString();
+    // eslint-disable-next-line no-param-reassign
+    data.dateOfLicence = data.dateOfLicence.toLocaleDateString();
+    // eslint-disable-next-line no-alert
+    return alert(JSON.stringify(data));
   };
 
   return (
@@ -112,15 +118,18 @@ const RequestForm = () => {
 
           <Controller
 	control={control}
-	name="dateInput"
-	render={({ field }) => {
-              return (
-                // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                <label htmlFor="date-of-birth" className="request-form__input-title">
-                  Дата рождения
-                  <DatePicker
-	id="date-of-birth"
-	required
+	name="dateOfBirth"
+	rules={{
+              required: true,
+            }}
+	render={({ field: { onChange, onBlur, value } }) => (
+              // eslint-disable-next-line jsx-a11y/label-has-associated-control
+  <label htmlFor="date-of-birth" className="request-form__input-title">
+    Дата рождения
+    <DatePicker
+	onChange={onChange} // send value to hook form
+	onBlur={onBlur} // notify when input is touched/blur
+	selected={value}
 	locale="ru"
 	minDate="1900"
 	maxDate={todayDate}
@@ -131,14 +140,9 @@ const RequestForm = () => {
 	changeMonth
 	changeYear
 	className="request-form__input request-form__input_small"
-	onChange={(date) => {
-                      return field.onChange(date);
-                    }}
-	selected={field.value}
-                  />
-                </label>
-              );
-            }}
+                />
+  </label>
+            )}
           />
 
           <label htmlFor="passport" className="request-form__input-title">
@@ -175,14 +179,16 @@ const RequestForm = () => {
 
             <Controller
 	control={control}
-	name="dateInputDriving"
-	render={({ field }) => {
-                return (
-                  // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                  <label htmlFor="date-licence" className="request-form__input-title">
-                    Дата выдачи удостоверения
-                    <DatePicker
-	id="date-licence"
+	name="dateOfLicence"
+	
+	render={({ field: { onChange, onBlur, value } }) => (
+                // eslint-disable-next-line jsx-a11y/label-has-associated-control
+  <label htmlFor="date-of-licence" className="request-form__input-title">
+    Дата выдачи удостоверения
+    <DatePicker
+	onChange={onChange} // send value to hook form
+	onBlur={onBlur} // notify when input is touched/blur
+	selected={value}
 	locale="ru"
 	minDate="1900"
 	maxDate={todayDate}
@@ -193,14 +199,9 @@ const RequestForm = () => {
 	changeMonth
 	changeYear
 	className="request-form__input request-form__input_small"
-	onChange={(date) => {
-                        return field.onChange(date);
-                      }}
-	selected={field.value}
-                    />
-                  </label>
-                );
-              }}
+                  />
+  </label>
+              )}
             />
           </div>
         </div>
