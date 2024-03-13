@@ -13,7 +13,7 @@ const Landing: FC = (): React.ReactElement => {
               <li className='landing__list-item'>Введите данные для проверки</li>
               <li className='landing__list-item'>Получите отчет</li>
             </ol>
-            <button type='submit' className='landing__btn'>Попробовать</button>
+            <button type='submit' className='landing__btn link'>Попробовать</button>
           </div>
           <div className='landing__preview-form'>
             <div className='landing__form-image'>

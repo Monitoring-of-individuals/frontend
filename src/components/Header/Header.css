@@ -7,14 +7,14 @@
 .header__container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 10px 34px;
+  padding: 20px 34px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e0e0e0;
 }
 
-.header__logo {
+/* .header__logo {
   max-width: 50px;
   max-height: 50px;
 }
@@ -24,6 +24,18 @@
   max-height: 100%;
   object-fit: cover;
   object-position: center;
+} */
+
+.header__monitoring {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.03em;
+  background: linear-gradient(142deg, #4e80ff 0%, #755ffc 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header__auth {
@@ -48,6 +60,7 @@
   font-weight: 400;
   font-size: 16px;
   color: #000;
+  text-decoration: none;
 }
 
 .header__button:hover {

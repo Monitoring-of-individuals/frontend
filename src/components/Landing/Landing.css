@@ -32,6 +32,10 @@
   color: #000;
 }
 
+.landing__list-item:first-child {
+  margin-bottom: 12px;
+}
+
 .landing__btn {
   border-radius: 20px;
   padding: 0px 24px;
@@ -46,6 +50,7 @@
 
 .landing__btn:hover {
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .landing__preview-info {

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-indent-props */
 import React, { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import '../../vendor/normalize.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import MainPage from '../../pages/MainPage/MainPage';
