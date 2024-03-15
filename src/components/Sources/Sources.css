@@ -1,5 +1,5 @@
 .sources {
-  background: #f8f8f8;
+  background: #f0f1f6;
 }
 
 .sources__container {
@@ -13,9 +13,17 @@
 }
 
 .sources__title {
-  font-weight: 600;
-  font-size: 26px;
-  margin-bottom: 72px;
+  font-family: "Open Sans Hebrew Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: #212327;
+  margin: 0 0 72px 0;
+}
+
+.sources__columns-wrapper {
+  padding: 60px;
+  background: #E6ECFF;
+  border-radius: 28px;
 }
 
 .sources__columns {
@@ -50,10 +58,12 @@
 }
 
 .source__subtitle {
-  margin: 14px 0 0;
-  text-align: center;
-  font-weight: 600;
+  font-family: "Open Sans Hebrew", sans-serif;
+  margin: 24px 0 0;
+  color: #212327;
+  font-weight: 700;
   font-size: 20px;
   line-height: 120%;
   letter-spacing: 0.02em;
+  text-align: center;
 }
