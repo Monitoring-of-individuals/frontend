@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+// import userIcon from '../../images/userIcon.svg';
 import './Header.css';
 
 interface HeaderProps {
@@ -10,11 +11,11 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ openSignUpPopup, openSignInPopup }): React.ReactElement => {
   return (
-    <header className="header">
-      <div className="header__container">
+    <header className='header'>
+      <div className='header__container'>
         <Link to='/' className='header__link-to-main'>
-          <div className="header__logo">
-            <img src={logo} alt="logo" className="header__logo-img" />
+          <div className='header__logo'>
+            <img src={logo} alt='logo' className='header__logo-img' />
           </div>
           <p className='header__monitoring link'>Мониторинг физических лиц</p>
         </Link>
@@ -36,6 +37,12 @@ const Header: FC<HeaderProps> = ({ openSignUpPopup, openSignInPopup }): React.Re
             </li>
           </ul>
         </nav>
+        {/* <div className='header__user-container link'>
+          <p className='header__user-info'>Константин Константиопольский</p>
+          <div className='header__user-logo'>
+            <img src={userIcon} alt='user-logo' className='header__user-logo-img' />
+          </div>
+        </div> */}
       </div>
     </header>
   );

@@ -70,16 +70,29 @@
   text-decoration: none;
 }
 
-.header__user-data {
-  margin: 0;
-  font-weight: 500;
-  font-size: 20px;
-  color: #000;
-  background: transparent;
-  border: none;
-  padding: 0;
+.header__user-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.header__user-data:hover {
-  cursor: pointer;
+.header__user-info {
+  margin: 0 12px 0 0;
+  padding: 0;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: "Open Sans Hebrew", sans-serif;
+  color: #618dff;
+}
+
+.header__user-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.header__user-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
