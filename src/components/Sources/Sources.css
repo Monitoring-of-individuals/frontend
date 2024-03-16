@@ -3,7 +3,7 @@
 }
 
 .sources__container {
-  padding-bottom: 180px;
+  padding: 80px 0 100px;
   display: flex;
   flex-direction: column;
   justify-content: center;

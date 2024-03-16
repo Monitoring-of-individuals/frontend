@@ -5,7 +5,7 @@
 .landing__container {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 60px 0 180px;
+  padding: 60px 0;
 }
 
 .landing__preview {
