@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './Landing.css';
-import report from '../../images/landing-img.svg';
+import report from '../../images/reportOnLanding.svg';
 
 const Landing: FC = (): React.ReactElement => {
   return (
@@ -9,10 +9,7 @@ const Landing: FC = (): React.ReactElement => {
         <div className='landing__preview'>
           <div className='landing__preview-info'>
             <h1 className='landing__title'>Быстрая проверка физических лиц</h1>
-            <ol className='landing__list'>
-              <li className='landing__list-item'>Введите данные для проверки</li>
-              <li className='landing__list-item'>Получите отчет</li>
-            </ol>
+            <p className='landing__subtitle'>Введите данные для проверки и получите отчет</p>
             <button type='submit' className='landing__btn link'>Попробовать</button>
           </div>
           <div className='landing__preview-form'>
