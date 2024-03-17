@@ -107,7 +107,6 @@
 
   input {
     background-color: #e0e0e0;
-    border-color: none;
     border: none;
     border-radius: 20px;
     width: 100%;
@@ -118,7 +117,6 @@
     color: black;
 
     &:focus {
-      border-color: none;
       border: none;
     }
   }
@@ -141,7 +139,6 @@
 
   .popup__input {
     background-color: #e0e0e0;
-    border-color: none;
     border: none;
     border-radius: 20px;
     width: 100%;
@@ -152,7 +149,6 @@
     color: black;
 
     &:focus {
-      border-color: none;
       border: none;
     }
   }

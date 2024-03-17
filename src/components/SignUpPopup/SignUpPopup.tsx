@@ -1,6 +1,11 @@
 /* eslint-disable react/jsx-indent-props */
 import React, { FC } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import { registerUser } from '../../utils/Api';
+import { EMAIL_REGEXP } from '../../utils/constants';
 
 interface SignUpPopupProps {
   isOpen: boolean;
@@ -9,6 +14,16 @@ interface SignUpPopupProps {
 
 const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElement => {
   const [showPassword, setShowPassword] = React.useState(false);
+  const navigate = useNavigate();
+
+  const {
+    register,
+    formState: { isValid },
+    handleSubmit,
+    watch,
+  } = useForm({
+    mode: 'onChange',
+  });
 
   function togglePasswordVisibility(): void {
     setShowPassword(!showPassword);
@@ -20,6 +35,17 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
     }
   }
 
+  function handleSubmitForm() {
+    if (watch('password') !== watch('passwordConfirm')) return;
+    registerUser(watch('firstName'), watch('lastName'), watch('email'), watch('password'))
+      .then(() => {
+        navigate('/');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
   return (
     <PopupWithForm
       title="Регистрация"
@@ -27,6 +53,8 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
       buttonText="Зарегистрироваться"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit(handleSubmitForm)}
+      isFormValid={isValid}
     >
       <div className="popup__input-container">
         <div className="popup__custom-input">
@@ -34,9 +62,19 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
             type="text"
             id="popup__name"
             placeholder="Имя"
-            name="name"
             className="popup__input popup__input_type_name"
             required
+            {...register('firstName', {
+              required: 'Текст должен содержать не менее 2-х символов',
+              maxLength: {
+                value: 40,
+                message: 'Текст должен содержать не более 40 символов',
+              },
+              minLength: {
+                value: 2,
+                message: 'Текст должен содержать не менее 2-х символов',
+              },
+            })}
           />
         </div>
         <div className="popup__custom-input">
@@ -44,9 +82,19 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
             type="text"
             id="popup__surname"
             placeholder="Фамилия"
-            name="surname"
             className="popup__input popup__input_type_surname"
             required
+            {...register('lastName', {
+              required: 'Текст должен содержать не менее 2-х символов',
+              maxLength: {
+                value: 40,
+                message: 'Текст должен содержать не более 40 символов',
+              },
+              minLength: {
+                value: 2,
+                message: 'Текст должен содержать не менее 2-х символов',
+              },
+            })}
           />
         </div>
         <div className="popup__custom-input">
@@ -54,9 +102,23 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
             type="url"
             id="popup__signup"
             placeholder="Почта"
-            name="email"
             className="popup__input popup__input_type_email"
             required
+            {...register('email', {
+              required: 'Текст должен содержать не менее 2-х символов',
+              maxLength: {
+                value: 40,
+                message: 'Текст должен содержать не более 40 символов',
+              },
+              minLength: {
+                value: 2,
+                message: 'Текст должен содержать не менее 2-х символов',
+              },
+              pattern: {
+                value: EMAIL_REGEXP,
+                message: 'Введите корректный адресс электронной почты',
+              },
+            })}
           />
         </div>
         <div className="popup__custom-input popup__custom-input_type-passoword">
@@ -64,9 +126,19 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
             type={showPassword ? 'text' : 'password'}
             id="popup__password"
             placeholder="Пароль"
-            name="password"
             className="popup__input popup__input_type_password"
             required
+            {...register('password', {
+              required: 'Текст должен содержать не менее 2-х символов',
+              maxLength: {
+                value: 40,
+                message: 'Текст должен содержать не более 40 символов',
+              },
+              minLength: {
+                value: 2,
+                message: 'Текст должен содержать не менее 2-х символов',
+              },
+            })}
           />
           <span
             className="popup__password-toggle"
@@ -83,9 +155,19 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
             type={showPassword ? 'text' : 'password'}
             id="popup__confirm-password"
             placeholder="Подтверждение пароля"
-            name="confirmPassword"
             className="popup__input popup__input_type_password"
             required
+            {...register('passwordConfirm', {
+              required: 'Текст должен содержать не менее 2-х символов',
+              maxLength: {
+                value: 40,
+                message: 'Текст должен содержать не более 40 символов',
+              },
+              minLength: {
+                value: 2,
+                message: 'Текст должен содержать не менее 2-х символов',
+              },
+            })}
           />
           <span
             className="popup__password-toggle"

@@ -49,9 +49,9 @@ const RequestForm = () => {
           <label htmlFor="last-name" className="request-form__input-title">
             Фамилия
             <input
-	id="last-name"
-	className="request-form__input"
-	{...register('lastName', {
+              id="last-name"
+              className="request-form__input"
+              {...register('lastName', {
                 required: 'Поле обязательно к заполнению',
                 minLength: {
                   value: 2,
@@ -72,9 +72,9 @@ const RequestForm = () => {
           <label htmlFor="first-name" className="request-form__input-title">
             Имя
             <input
-	id="first-name"
-	className="request-form__input"
-	{...register('firstName', {
+              id="first-name"
+              className="request-form__input"
+              {...register('firstName', {
                 required: 'Поле обязательно к заполнению',
                 minLength: {
                   value: 2,
@@ -95,9 +95,9 @@ const RequestForm = () => {
           <label htmlFor="father-name" className="request-form__input-title">
             Отчество
             <input
-	id="father-name"
-	className="request-form__input"
-	{...register('fatherName', {
+              id="father-name"
+              className="request-form__input"
+              {...register('fatherName', {
                 required: 'Поле обязательно к заполнению',
                 minLength: {
                   value: 2,
@@ -117,40 +117,40 @@ const RequestForm = () => {
           </label>
 
           <Controller
-	control={control}
-	name="dateOfBirth"
-	rules={{
+            control={control}
+            name="dateOfBirth"
+            rules={{
               required: true,
             }}
-	render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
-  <label htmlFor="date-of-birth" className="request-form__input-title">
-    Дата рождения
-    <DatePicker
-	onChange={onChange} // send value to hook form
-	onBlur={onBlur} // notify when input is touched/blur
-	selected={value}
-	locale="ru"
-	minDate="1900"
-	maxDate={todayDate}
-	showYearDropdown
-	dateFormat="dd.MM.yyyy"
-	scrollableYearDropdown
-	yearDropdownItemNumber={100}
-	changeMonth
-	changeYear
-	className="request-form__input request-form__input_small"
+              <label htmlFor="date-of-birth" className="request-form__input-title">
+                Дата рождения
+                <DatePicker
+                  onChange={onChange} // send value to hook form
+                  onBlur={onBlur} // notify when input is touched/blur
+                  selected={value}
+                  locale="ru"
+                  minDate="1900"
+                  maxDate={todayDate}
+                  showYearDropdown
+                  dateFormat="dd.MM.yyyy"
+                  scrollableYearDropdown
+                  yearDropdownItemNumber={100}
+                  changeMonth
+                  changeYear
+                  className="request-form__input request-form__input_small"
                 />
-  </label>
+              </label>
             )}
           />
 
           <label htmlFor="passport" className="request-form__input-title">
             Серия и номер паспорта
             <input
-	id="passport"
-	className="request-form__input"
-	{...register('passport', {
+              id="passport"
+              className="request-form__input"
+              {...register('passport', {
                 required: 'Поле обязательно к заполнению',
 
                 pattern: {
@@ -165,9 +165,9 @@ const RequestForm = () => {
             <label htmlFor="driving-licence" className="request-form__input-title">
               Водительское удостоверение
               <input
-	id="driving-licence"
-	className="request-form__input request-form__input_medium"
-	{...register('drivingLicence', {
+                id="driving-licence"
+                className="request-form__input request-form__input_medium"
+                {...register('drivingLicence', {
                   pattern: {
                     value: patternPassport,
                     message: 'Введите водительское удостоверения в виде 4000980015',
@@ -178,29 +178,28 @@ const RequestForm = () => {
             </label>
 
             <Controller
-	control={control}
-	name="dateOfLicence"
-	
-	render={({ field: { onChange, onBlur, value } }) => (
+              control={control}
+              name="dateOfLicence"
+              render={({ field: { onChange, onBlur, value } }) => (
                 // eslint-disable-next-line jsx-a11y/label-has-associated-control
-  <label htmlFor="date-of-licence" className="request-form__input-title">
-    Дата выдачи удостоверения
-    <DatePicker
-	onChange={onChange} // send value to hook form
-	onBlur={onBlur} // notify when input is touched/blur
-	selected={value}
-	locale="ru"
-	minDate="1900"
-	maxDate={todayDate}
-	showYearDropdown
-	dateFormat="dd.MM.yyyy"
-	scrollableYearDropdown
-	yearDropdownItemNumber={100}
-	changeMonth
-	changeYear
-	className="request-form__input request-form__input_small"
+                <label htmlFor="date-of-licence" className="request-form__input-title">
+                  Дата выдачи удостоверения
+                  <DatePicker
+                    onChange={onChange} // send value to hook form
+                    onBlur={onBlur} // notify when input is touched/blur
+                    selected={value}
+                    locale="ru"
+                    minDate="1900"
+                    maxDate={todayDate}
+                    showYearDropdown
+                    dateFormat="dd.MM.yyyy"
+                    scrollableYearDropdown
+                    yearDropdownItemNumber={100}
+                    changeMonth
+                    changeYear
+                    className="request-form__input request-form__input_small"
                   />
-  </label>
+                </label>
               )}
             />
           </div>
@@ -239,12 +238,12 @@ const RequestForm = () => {
       </div>
       <div className="btn-block">
         <Button
-	type="button"
-	btnText="Очистить форму"
-	isBtnBlue={false}
-	isBtnDisabled={false}
-	onClick={handleResetForm}
-	isButtonLarge={false}
+          type="button"
+          btnText="Очистить форму"
+          isBtnBlue={false}
+          isBtnDisabled={false}
+          onClick={handleResetForm}
+          isButtonLarge={false}
         />
         <Button type="submit" btnText="Отправить" isBtnBlue isBtnDisabled={!isValid} />
       </div>

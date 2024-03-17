@@ -55,10 +55,11 @@
         "ignoreCase": false
       }
     ],
+    "react/jsx-props-no-spreading": [0],
     "react/hook-use-state": ["error"],
     "react/jsx-indent": ["warn", 2],
     "react/react-in-jsx-scope": 0,
-    "react/jsx-indent-props": [2, "tab"],
+    "react/jsx-indent-props": [2, 2],
     "react/jsx-filename-extension": [
       "error",
       {
@@ -116,7 +117,8 @@
     "no-mixed-operators": "off", // Несовместимо с prettier
     "function-paren-newline": "off", // Несовместимо с prettier
     "space-before-function-paren": 0, // Несовместимо с prettier
-    "no-alert": "error" // airbnb использует предупреждение
+    "no-alert": "error" ,// airbnb использует предупреждение
+    "jsx-a11y/label-has-associated-control": [0]
   },
   "settings": {
     "import/resolver": {

@@ -1,4 +1,4 @@
-const baseURL = '';
+const baseURL = 'http://ratproject.ru';
 const baseHeaders = {
   'Content-Type': 'application/json',
 };
@@ -18,8 +18,8 @@ type TcheckSuccess<T> = {
 } & T;
 
 const checkSuccess = <T>(res: TcheckSuccess<T>): Promise<TcheckSuccess<T>> => {
-  if (res && res.success) return Promise.resolve(res);
-  return res.json().then((err) => Promise.reject(err));
+  if (res) return Promise.resolve(res);
+  return Promise.reject(res);
 };
 
 const request = <T>(
