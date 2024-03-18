@@ -22,18 +22,18 @@ const Header: FC<HeaderProps> = ({ openSignUpPopup, openSignInPopup }): React.Re
         <nav className='header__nav'>
           <ul className='header__auth'>
             <li className='header__auth-item link'>
-              <button type='button' className='header__button link'>
-                <Link to='/signup' className='header__button-link' onClick={openSignUpPopup}>
+              <Link to='/signup' className='header__button-link' onClick={openSignUpPopup}>
+                <button type='button' className='header__button link'>
                   Регистрация
-                </Link>
-              </button>
+                </button>
+              </Link>
             </li>
             <li className='header__auth-item link'>
-              <button type='button' className='header__button link'>
-                <Link to='/signin' className='header__button-link' onClick={openSignInPopup}>
+              <Link to='/signin' className='header__button-link' onClick={openSignInPopup}>
+                <button type='button' className='header__button link'>
                   Вход
-                </Link>
-              </button>
+                </button>
+              </Link>
             </li>
           </ul>
         </nav>
