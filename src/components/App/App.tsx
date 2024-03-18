@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import MainPage from '../../pages/MainPage/MainPage';
 import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
+import RequestForm from '../RequestForm/RequestForm';
 
 const App: FC = (): React.ReactElement => {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = React.useState(false);
@@ -49,7 +50,7 @@ const App: FC = (): React.ReactElement => {
           }
         />
       </Routes>
-
+      <RequestForm />
       <Footer />
     </>
   );
