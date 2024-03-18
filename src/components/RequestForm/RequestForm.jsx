@@ -5,9 +5,10 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ru } from 'date-fns/locale/ru';
 
-import './RequestForm.css';
+import styles from './RequestForm.module.css';
 import checkMark from '../../images/check-mark.svg';
 import Button from '../Button/Button';
+import { PATTERN_NAME, PATTERN_PASSPORT } from '../../utils/constants';
 
 const RequestForm = () => {
   const {
@@ -19,14 +20,10 @@ const RequestForm = () => {
   } = useForm({
     mode: 'all',
   });
-  // eslint-disable-next-line no-unused-vars
-  //  const [selectedDate, setSelectedDate] = useState(null);
 
   // eslint-disable-next-line no-unused-vars
   const [todayDate, setTodayDate] = useState(new Date());
 
-  const patternName = /^(?=.{1,30}$)[а-яёА-ЯЁ]+(?:[-' ][а-яёА-ЯЁ]+)*$/;
-  const patternPassport = /(\d{4})\s*-?\s*(\d{6})/;
   registerLocale('ru', ru);
 
   const handleResetForm = () => {
@@ -37,20 +34,21 @@ const RequestForm = () => {
     // eslint-disable-next-line no-param-reassign
     data.dateOfBirth = data.dateOfBirth.toLocaleDateString();
     // eslint-disable-next-line no-param-reassign
-    data.dateOfLicence = data.dateOfLicence.toLocaleDateString();
+    data.dateOfLicence = data?.dateOfLicence?.toLocaleDateString() || '';
     // eslint-disable-next-line no-alert
     return alert(JSON.stringify(data));
   };
 
   return (
-    <form className="request-form" onSubmit={handleSubmit(onSubmit)}>
-      <div className="request-form__section">
-        <div className="request-form__block">
-          <label htmlFor="last-name" className="request-form__input-title">
+    <section className={styles.formSection}>
+      <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <h2 className={styles.formTitle}>Введите данные для проверки</h2>
+        <div className={styles.formBlock}>
+          <label htmlFor="last-name" className={styles.inputTitle}>
             Фамилия
             <input
               id="last-name"
-              className="request-form__input"
+              className={styles.input}
               {...register('lastName', {
                 required: 'Поле обязательно к заполнению',
                 minLength: {
@@ -62,18 +60,18 @@ const RequestForm = () => {
                   message: 'Максимум 30 символов',
                 },
                 pattern: {
-                  value: patternName,
+                  value: PATTERN_NAME,
                   message: 'Введены недопустимые символы',
                 },
               })}
             />
           </label>
-          <p className="request-form__error">{errors?.lastName?.message}</p>
-          <label htmlFor="first-name" className="request-form__input-title">
+          <p className={styles.error}>{errors?.lastName?.message}</p>
+          <label htmlFor="first-name" className={styles.inputTitle}>
             Имя
             <input
               id="first-name"
-              className="request-form__input"
+              className={styles.input}
               {...register('firstName', {
                 required: 'Поле обязательно к заполнению',
                 minLength: {
@@ -85,18 +83,18 @@ const RequestForm = () => {
                   message: 'Максимум 30 символов',
                 },
                 pattern: {
-                  value: patternName,
+                  value: PATTERN_NAME,
                   message: 'Введены недопустимые символы',
                 },
               })}
             />
-            <p className="request-form__error">{errors?.firstName?.message}</p>
+            <p className={styles.error}>{errors?.firstName?.message}</p>
           </label>
-          <label htmlFor="father-name" className="request-form__input-title">
+          <label htmlFor="father-name" className={styles.inputTitle}>
             Отчество
             <input
               id="father-name"
-              className="request-form__input"
+              className={styles.input}
               {...register('fatherName', {
                 required: 'Поле обязательно к заполнению',
                 minLength: {
@@ -108,12 +106,12 @@ const RequestForm = () => {
                   message: 'Максимум 30 символов',
                 },
                 pattern: {
-                  value: patternName,
+                  value: PATTERN_NAME,
                   message: 'Введены недопустимые символы',
                 },
               })}
             />
-            <p className="request-form__error">{errors?.fatherName?.message}</p>
+            <p className={styles.error}>{errors?.fatherName?.message}</p>
           </label>
 
           <Controller
@@ -124,7 +122,7 @@ const RequestForm = () => {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               // eslint-disable-next-line jsx-a11y/label-has-associated-control
-              <label htmlFor="date-of-birth" className="request-form__input-title">
+              <label htmlFor="date-of-birth" className={styles.inputTitle}>
                 Дата рождения
                 <DatePicker
                   onChange={onChange} // send value to hook form
@@ -139,42 +137,50 @@ const RequestForm = () => {
                   yearDropdownItemNumber={100}
                   changeMonth
                   changeYear
-                  className="request-form__input request-form__input_small"
+                  className={`${styles.input} ${styles.inputDate}`}
                 />
               </label>
             )}
           />
 
-          <label htmlFor="passport" className="request-form__input-title">
+          <label htmlFor="passport" className={styles.inputTitle}>
             Серия и номер паспорта
             <input
               id="passport"
-              className="request-form__input"
+              className={styles.input}
               {...register('passport', {
                 required: 'Поле обязательно к заполнению',
 
                 pattern: {
-                  value: patternPassport,
+                  value: PATTERN_PASSPORT,
                   message: 'Введите серию и номер паспорта в виде 4000980015',
+                },
+                maxLength: {
+                  value: 10,
+                  message: 'Максимум 10 символов',
                 },
               })}
             />
           </label>
-          <p className="request-form__error">{errors?.passport?.message}</p>
-          <div className="request-form__driving-block">
-            <label htmlFor="driving-licence" className="request-form__input-title">
+          <p className={styles.error}>{errors?.passport?.message}</p>
+          <div className={styles.drivingBlock}>
+            <label htmlFor="driving-licence" className={styles.inputTitle}>
               Водительское удостоверение
               <input
                 id="driving-licence"
-                className="request-form__input request-form__input_medium"
+                className={`${styles.input} ${styles.inputSmall}`}
                 {...register('drivingLicence', {
                   pattern: {
-                    value: patternPassport,
+                    value: PATTERN_PASSPORT,
                     message: 'Введите водительское удостоверения в виде 4000980015',
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: 'Максимум 10 символов',
                   },
                 })}
               />
-              <p className="request-form__error">{errors?.drivingLicence?.message}</p>
+              <p className={styles.error}>{errors?.drivingLicence?.message}</p>
             </label>
 
             <Controller
@@ -182,8 +188,8 @@ const RequestForm = () => {
               name="dateOfLicence"
               render={({ field: { onChange, onBlur, value } }) => (
                 // eslint-disable-next-line jsx-a11y/label-has-associated-control
-                <label htmlFor="date-of-licence" className="request-form__input-title">
-                  Дата выдачи удостоверения
+                <label htmlFor="date-of-licence" className={styles.inputTitle}>
+                  Дата выдачи водительского удостоверения
                   <DatePicker
                     onChange={onChange} // send value to hook form
                     onBlur={onBlur} // notify when input is touched/blur
@@ -197,57 +203,57 @@ const RequestForm = () => {
                     yearDropdownItemNumber={100}
                     changeMonth
                     changeYear
-                    className="request-form__input request-form__input_small"
+                    className={`${styles.input} ${styles.inputMedium}`}
                   />
                 </label>
               )}
             />
           </div>
         </div>
-        <div className="request-form__description">
-          <ul className="request-form__description-title">Проверка по следующим параметрам</ul>
-          <li className="request-form__description-block">
-            <img className="request-form__description-check-mark" src={checkMark} alt="галка" />
-            <p className="request-form__description-text">Исполнительные производства</p>
-          </li>
-          <li className="request-form__description-block">
-            <img className="request-form__description-check-mark" src={checkMark} alt="галка" />
-            <p className="request-form__description-text">Узнать ИНН</p>
-          </li>
-          <li className="request-form__description-block">
-            <img className="request-form__description-check-mark" src={checkMark} alt="галка" />
-            <p className="request-form__description-text">Является ли человек самозанятым</p>
-          </li>
-          <li className="request-form__description-block">
-            <img className="request-form__description-check-mark" src={checkMark} alt="галка" />
-            <p className="request-form__description-text">Действительность паспорта</p>
-          </li>
-          <li className="request-form__description-block">
-            <img className="request-form__description-check-mark" src={checkMark} alt="галка" />
-            <p className="request-form__description-text">Проверить водительские права</p>
-          </li>
-          <li className="request-form__description-block">
-            <img className="request-form__description-check-mark" src={checkMark} alt="галка" />
-            <p className="request-form__description-text">Проверка на террориста</p>
-          </li>
-          <li className="request-form__description-block">
-            <img className="request-form__description-check-mark" src={checkMark} alt="галка" />
-            <p className="request-form__description-text">Является ли банкротом</p>
-          </li>
+        <div className={styles.btnBlock}>
+          <Button type="submit" btnText="Получить отчет" isBtnBlue isBtnDisabled={!isValid} />
+          <Button
+            type="button"
+            btnText="Очистить форму"
+            isBtnBlue={false}
+            isBtnDisabled={false}
+            onClick={handleResetForm}
+            isButtonLarge={false}
+          />
         </div>
+      </form>
+      <div className={styles.description}>
+        <ul className={styles.descriptionTitle}>Проверка по следующим параметрам</ul>
+        <li className={styles.descriptionBlock}>
+          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <p className={styles.descriptionText}>Наличие исполнительных производств</p>
+        </li>
+        <li className={styles.descriptionBlock}>
+          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <p className={styles.descriptionText}>Узнать ИНН</p>
+        </li>
+        <li className={styles.descriptionBlock}>
+          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <p className={styles.descriptionText}>Действительность паспорта</p>
+        </li>
+        <li className={styles.descriptionBlock}>
+          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <p className={styles.descriptionText}>Наличие банкротства</p>
+        </li>
+        <li className={styles.descriptionBlock}>
+          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <p className={styles.descriptionText}>Действительность водительских прав</p>
+        </li>
+        <li className={styles.descriptionBlock}>
+          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <p className={styles.descriptionText}>Является ли человек самозанятым</p>
+        </li>
+        <li className={styles.descriptionBlock}>
+          <img className={styles.descriptionCheckMark} src={checkMark} alt="галка" />
+          <p className={styles.descriptionText}>Проверка на террориста</p>
+        </li>
       </div>
-      <div className="btn-block">
-        <Button
-          type="button"
-          btnText="Очистить форму"
-          isBtnBlue={false}
-          isBtnDisabled={false}
-          onClick={handleResetForm}
-          isButtonLarge={false}
-        />
-        <Button type="submit" btnText="Отправить" isBtnBlue isBtnDisabled={!isValid} />
-      </div>
-    </form>
+    </section>
   );
 };
 export default RequestForm;
