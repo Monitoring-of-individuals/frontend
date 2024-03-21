@@ -8,6 +8,7 @@ import MainPage from '../../pages/MainPage/MainPage';
 import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
 import RequestForm from '../RequestForm/RequestForm';
+import Report from '../../pages/Report/Report';
 
 const App: FC = (): React.ReactElement => {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = React.useState(false);
@@ -31,6 +32,7 @@ const App: FC = (): React.ReactElement => {
       <Header openSignInPopup={handleOpenSignInPopup} openSignUpPopup={handleOpenSignUpPopup} />
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/report" element={<Report />} />
         <Route
           path="/signup"
           element={
