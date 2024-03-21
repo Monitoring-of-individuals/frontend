@@ -13,8 +13,6 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ openSignUpPopup, openSignInPopup }): React.ReactElement => {
   const currentUser: any = useSelector((state: RootState) => state.currentUser);
-  // eslint-disable-next-line no-restricted-syntax
-  console.log(currentUser);
   return (
     <header className='header'>
       <div className='header__container'>
