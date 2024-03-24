@@ -7,8 +7,8 @@ import Footer from '../Footer/Footer';
 import MainPage from '../../pages/MainPage/MainPage';
 import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
-import RequestForm from '../RequestForm/RequestForm';
 import Report from '../../pages/Report/Report';
+import AuthorisedUserPage from '../../pages/AuthorisedUserPage/AuthorisedUserPage';
 
 const App: FC = (): React.ReactElement => {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = React.useState(false);
@@ -51,8 +51,9 @@ const App: FC = (): React.ReactElement => {
             </>
           }
         />
+        <Route path="/registeduser" element={<AuthorisedUserPage />} />
       </Routes>
-      <RequestForm />
+
       <Footer />
     </>
   );

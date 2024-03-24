@@ -37,7 +37,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:debug": "eslint . --ext .js,.jsx,.ts,.tsx --debug",
-    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "deploy": "npm run build && scp -r ./build/* capwell@130.193.36.103:/home/capwell/monitoring-of-individuals/frontend/build"
   },
   "eslintConfig": {
     "extends": [
