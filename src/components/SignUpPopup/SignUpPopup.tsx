@@ -4,9 +4,10 @@ import React, { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../../services/hooks/reduxHooks';
-import PopupWithForm from '../PopupWithForm/PopupWithForm';
-import { EMAIL_REGEXP } from '../../utils/constants';
 import { createUser } from '../../services/actions/userActions';
+
+import PopupWithForm from '../PopupWithForm/PopupWithForm';
+import { EMAIL_REGEXP, PATTERN_NAME, PATTERN_PASSWORD } from '../../utils/constants';
 
 interface SignUpPopupProps {
   onClose: () => void;
@@ -70,14 +71,18 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
             className="popup__input popup__input_type_name"
             required
             {...register('firstName', {
-              required: 'Текст должен содержать не менее 2-х символов',
-              maxLength: {
-                value: 40,
-                message: 'Текст должен содержать не более 40 символов',
-              },
+              required: 'Поле обязательно к заполнению',
               minLength: {
                 value: 2,
-                message: 'Текст должен содержать не менее 2-х символов',
+                message: 'Минимум 2 символа',
+              },
+              maxLength: {
+                value: 30,
+                message: 'Максимум 30 символов',
+              },
+              pattern: {
+                value: PATTERN_NAME,
+                message: 'Введены недопустимые символы',
               },
             })}
           />
@@ -91,14 +96,18 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
             className="popup__input popup__input_type_surname"
             required
             {...register('lastName', {
-              required: 'Текст должен содержать не менее 2-х символов',
-              maxLength: {
-                value: 40,
-                message: 'Текст должен содержать не более 40 символов',
-              },
+              required: 'Поле обязательно к заполнению',
               minLength: {
                 value: 2,
-                message: 'Текст должен содержать не менее 2-х символов',
+                message: 'Минимум 2 символа',
+              },
+              maxLength: {
+                value: 30,
+                message: 'Максимум 30 символов',
+              },
+              pattern: {
+                value: PATTERN_NAME,
+                message: 'Введены недопустимые символы',
               },
             })}
           />
@@ -129,7 +138,7 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
           />
           <span className="registerForm__error">{emailError}</span>
         </label>
-        <label className="popup__custom-input popup__custom-input_type-passoword">
+        <label className="popup__custom-input popup__custom-input_type-password">
           <input
             type={showPassword ? 'text' : 'password'}
             id="popup__password"
@@ -137,14 +146,19 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
             className="popup__input popup__input_type_password"
             required
             {...register('password', {
-              required: 'Текст должен содержать не менее 2-х символов',
+              required: 'Поле обязательно к заполнению',
               maxLength: {
                 value: 40,
-                message: 'Текст должен содержать не более 40 символов',
+                message: 'Пароль не более 40 символов',
               },
               minLength: {
-                value: 2,
-                message: 'Текст должен содержать не менее 2-х символов',
+                value: 8,
+                message: 'Пароль не менее 8-ми символов',
+              },
+              pattern: {
+                value: PATTERN_PASSWORD,
+                message:
+                  'Минимум 8 символов, одна цифра, одна буква в верхнем регистре и одна в нижнем',
               },
             })}
           />
@@ -159,7 +173,7 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
           </span>
           <span className="registerForm__error">{passwordError}</span>
         </label>
-        <label className="popup__custom-input popup__custom-input_type-passoword">
+        <label className="popup__custom-input popup__custom-input_type-password">
           <input
             type={showPassword ? 'text' : 'password'}
             id="popup__confirm-password"
