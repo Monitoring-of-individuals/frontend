@@ -26,14 +26,16 @@
   background-color: #f5f5f5;
   color: black;
   border-radius: 20px;
-  width: 644px;
-  height: 409px;
+  min-width: 544px;
+  // min-height: 409px;
+  display: flex;
+
   padding: 20px;
-  box-sizing: border-box;
+  // box-sizing: border-box;
 }
 
 .popup_signUp {
-  height: 694px;
+  min-height: 694px;
 }
 
 .popup__close-button {
@@ -82,6 +84,16 @@
   border: 0;
 }
 
+.registerForm__error {
+  display: block;
+  height: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 10px;
+  color: red;
+  margin: 5px 0 0 12px;
+}
+
 .popup__save-button:hover {
   background-color: rgb(0, 0, 0, 0.8);
   cursor: pointer;
@@ -98,12 +110,14 @@
   flex-direction: column;
   row-gap: 16px;
   width: 100%;
+
   padding-bottom: 20px;
 }
 
 .popup__custom-input {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 
   input {
     background-color: #e0e0e0;
@@ -122,16 +136,16 @@
   }
 }
 
-.popup__custom-input_type-passoword {
+.popup__custom-input_type-password {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: relative;
 
   .popup__password-toggle {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    object-fit: cover;
+    top: 6px;
+    right: -16px;
     background-image: url(../../images/eye.svg);
     width: 40px;
     height: 40px;
@@ -142,7 +156,7 @@
     border: none;
     border-radius: 20px;
     width: 100%;
-    padding: 24.5px 16px;
+    padding: 15px 16px;
     font-weight: 400;
     font-size: 20px;
     line-height: 23.44px;
@@ -155,7 +169,7 @@
 }
 
 .popup__custom-input::placeholder,
-.popup__custom-input_type-passoword {
+.popup__custom-input_type-password {
   color: #848484;
 }
 
