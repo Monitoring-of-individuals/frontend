@@ -7,11 +7,10 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import { EMAIL_REGEXP } from '../../utils/constants';
 
 interface SignInPopupProps {
-  isOpen: boolean;
   onClose: () => void;
 }
 
-const SignInPopup: FC<SignInPopupProps> = ({ isOpen, onClose }): React.ReactElement => {
+const SignInPopup: FC<SignInPopupProps> = ({ onClose }): React.ReactElement => {
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
   const {
@@ -36,7 +35,7 @@ const SignInPopup: FC<SignInPopupProps> = ({ isOpen, onClose }): React.ReactElem
   function handleSubmitForm() {
     loginUser(watch('email'), watch('password'))
       .then(() => {
-        navigate('/');
+        navigate('/registereduser');
       })
       .catch((err) => {
         console.error(err);
@@ -50,7 +49,6 @@ const SignInPopup: FC<SignInPopupProps> = ({ isOpen, onClose }): React.ReactElem
       title="Вход"
       name="signIn"
       buttonText="Войти"
-      isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit(handleSubmitForm)}
       isFormValid={isValid}

@@ -40,7 +40,6 @@ export type UTUserActions =
   | IUserResetFailureAction;
 
 const createUser = (firstName: string, lastName: string, email: string, password: string) => {
-  // eslint-disable-next-line func-names
   return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_USER_CREDENTIALS,

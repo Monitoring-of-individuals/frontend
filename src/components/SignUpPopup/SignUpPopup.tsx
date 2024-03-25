@@ -3,22 +3,23 @@ import React, { FC } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from '../../services/hooks/reduxHooks';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
-import { registerUser } from '../../utils/Api';
 import { EMAIL_REGEXP } from '../../utils/constants';
+import { createUser } from '../../services/actions/userActions';
 
 interface SignUpPopupProps {
-  isOpen: boolean;
   onClose: () => void;
 }
 
-const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElement => {
+const SignUpPopup: FC<SignUpPopupProps> = ({ onClose }): React.ReactElement => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
 
   const {
     register,
-    formState: { isValid },
+    formState: { errors, isValid },
     handleSubmit,
     watch,
   } = useForm({
@@ -35,29 +36,33 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
     }
   }
 
-  function handleSubmitForm() {
+  const handleSubmitForm = () => {
     if (watch('password') !== watch('passwordConfirm')) return;
-    registerUser(watch('firstName'), watch('lastName'), watch('email'), watch('password'))
-      .then(() => {
-        navigate('/');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+    dispatch(
+      createUser(watch('firstName'), watch('lastName'), watch('email'), watch('password'))
+    ).then(() => {
+      navigate('/');
+    });
+  };
+
+  const firstNameError: string | undefined = errors?.firstName?.message?.toString();
+  const lastNameError = errors?.lastName?.message?.toString();
+  const emailError = errors?.email?.message?.toString();
+  const passwordError = errors?.password?.message?.toString();
+  const persDataError = errors?.dataCheckbox?.message?.toString();
+  const policiError = errors?.privacyCheckbox?.message?.toString();
 
   return (
     <PopupWithForm
       title="Регистрация"
       name="signUp"
       buttonText="Зарегистрироваться"
-      isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit(handleSubmitForm)}
       isFormValid={isValid}
     >
       <div className="popup__input-container">
-        <div className="popup__custom-input">
+        <label className="popup__custom-input">
           <input
             type="text"
             id="popup__name"
@@ -76,8 +81,9 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
               },
             })}
           />
-        </div>
-        <div className="popup__custom-input">
+          <span className="registerForm__error">{firstNameError}</span>
+        </label>
+        <label className="popup__custom-input">
           <input
             type="text"
             id="popup__surname"
@@ -96,8 +102,9 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
               },
             })}
           />
-        </div>
-        <div className="popup__custom-input">
+          <span className="registerForm__error">{lastNameError}</span>
+        </label>
+        <label className="popup__custom-input">
           <input
             type="url"
             id="popup__signup"
@@ -120,8 +127,9 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
               },
             })}
           />
-        </div>
-        <div className="popup__custom-input popup__custom-input_type-passoword">
+          <span className="registerForm__error">{emailError}</span>
+        </label>
+        <label className="popup__custom-input popup__custom-input_type-passoword">
           <input
             type={showPassword ? 'text' : 'password'}
             id="popup__password"
@@ -149,8 +157,9 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
           >
             {}
           </span>
-        </div>
-        <div className="popup__custom-input popup__custom-input_type-passoword">
+          <span className="registerForm__error">{passwordError}</span>
+        </label>
+        <label className="popup__custom-input popup__custom-input_type-passoword">
           <input
             type={showPassword ? 'text' : 'password'}
             id="popup__confirm-password"
@@ -178,18 +187,34 @@ const SignUpPopup: FC<SignUpPopupProps> = ({ isOpen, onClose }): React.ReactElem
           >
             {}
           </span>
-        </div>
-      </div>
-      <div className="popup__checkbox-container">
-        <label htmlFor="data-checkbox">
-          <input type="checkbox" id="data-checkbox" />
-          <span className="checkbox-custom">{}</span>
-          Согласие на обработку персональных данных
         </label>
-        <label htmlFor="privacy-checkbox">
-          <input type="checkbox" id="privacy-checkbox" />
-          <span className="checkbox-custom">{}</span>
-          Политика конфиденциальности
+        <label className="popup__checkbox-container">
+          <label htmlFor="data-checkbox">
+            <input
+              type="checkbox"
+              id="data-checkbox"
+              required
+              {...register('dataCheckbox', {
+                required: 'Необходимо принять согласие на обработку персональных данных',
+              })}
+            />
+            <span className="checkbox-custom">{}</span>
+            <span>Согласие на обработку персональных данных</span>
+            <span className="registerForm__error">{persDataError}</span>
+          </label>
+          <label htmlFor="privacy-checkbox">
+            <input
+              type="checkbox"
+              id="privacy-checkbox"
+              required
+              {...register('privacyCheckbox', {
+                required: 'Необходимо принять политику конфиденциальности',
+              })}
+            />
+            <span className="checkbox-custom">{}</span>
+            <span>Политика конфиденциальности</span>
+            <span className="registerForm__error">{policiError}</span>
+          </label>
         </label>
       </div>
     </PopupWithForm>

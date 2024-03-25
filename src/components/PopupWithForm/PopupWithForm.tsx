@@ -7,7 +7,6 @@ interface PopupWithFormProps {
   name: string;
   buttonText: string;
   children: ReactNode;
-  isOpen: boolean;
   onClose: () => void;
   onSubmit: () => void;
   isFormValid: boolean;
@@ -18,13 +17,12 @@ const PopupWithForm: FC<PopupWithFormProps> = ({
   name,
   buttonText,
   children,
-  isOpen,
   onClose,
   onSubmit,
   isFormValid,
 }): React.ReactElement => {
   return (
-    <section className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`}>
+    <section className={`popup popup_type_${name} popup_opened`}>
       <div className={`popup__container ${name === 'signUp' ? 'popup_signUp' : ''}`}>
         <form className={`popup__form popup__${name}-form`} noValidate onSubmit={onSubmit}>
           <div className="popup__title-container">

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-indent-props */
 import React, { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import '../../vendor/normalize.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -9,27 +9,18 @@ import SignInPopup from '../SignInPopup/SignInPopup';
 import SignUpPopup from '../SignUpPopup/SignUpPopup';
 import Report from '../../pages/Report/Report';
 import AuthorisedUserPage from '../../pages/AuthorisedUserPage/AuthorisedUserPage';
+import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 
 const App: FC = (): React.ReactElement => {
-  const [isSignInPopupOpen, setIsSignInPopupOpen] = React.useState(false);
-  const [isSignUpPopupOpen, setIsSignUpPopupOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const closeAllPopups = () => {
-    setIsSignInPopupOpen(false);
-    setIsSignUpPopupOpen(false);
-  };
-
-  const handleOpenSignInPopup = () => {
-    setIsSignInPopupOpen(true);
-  };
-
-  const handleOpenSignUpPopup = () => {
-    setIsSignUpPopupOpen(true);
+    navigate('/');
   };
 
   return (
     <>
-      <Header openSignInPopup={handleOpenSignInPopup} openSignUpPopup={handleOpenSignUpPopup} />
+      <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/report" element={<Report />} />
@@ -37,7 +28,7 @@ const App: FC = (): React.ReactElement => {
           path="/signup"
           element={
             <>
-              <SignUpPopup isOpen={isSignUpPopupOpen} onClose={closeAllPopups} />
+              <SignUpPopup onClose={closeAllPopups} />
               <MainPage />
             </>
           }
@@ -46,12 +37,15 @@ const App: FC = (): React.ReactElement => {
           path="/signin"
           element={
             <>
-              <SignInPopup isOpen={isSignInPopupOpen} onClose={closeAllPopups} />
+              <SignInPopup onClose={closeAllPopups} />
               <MainPage />
             </>
           }
         />
-        <Route path="/registeduser" element={<AuthorisedUserPage />} />
+        <Route
+          path="/registereduser"
+          element={<ProtectedRouteElement element={<AuthorisedUserPage />} />}
+        />
       </Routes>
 
       <Footer />
