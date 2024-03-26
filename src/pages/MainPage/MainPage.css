@@ -1,0 +1,12 @@
+.main {
+  font-family: "Roboto", sans-serif;
+}
+
+.link {
+  transition: .5s;
+}
+
+.link:hover {
+  cursor: pointer;
+  opacity: .5;
+}

@@ -1,0 +1,141 @@
+.formSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #f0f1f6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #d7e0ff;
+  border-radius: 40px;
+}
+
+.formTitle {
+  width: 100%;
+  padding: 30px 0 30px 20px;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 31px;
+  background-color: #f0f3ff;
+  margin: 20px 20px 0 22px;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  width: 625px;
+  transform: translate(0px, 2px);
+}
+
+.formBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 2px solid #ddd;
+  /* border-radius: 20px; */
+  width: 645px;
+  margin: 0px 20px 20px;
+  padding: 30px 0 0;
+  background-color: #f6f6f6;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.inputTitle {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0 0 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.input {
+  margin: 0 0 0;
+  padding: 0 8px 0 0;
+  width: 320px;
+  border-radius: 8px;
+  background-color: #fff;
+  height: 48px;
+  border: none;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.drivingBlock {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+}
+
+.inputMedium {
+  width: 343px;
+}
+
+.inputSmall {
+  width: 246px;
+  margin: 0;
+}
+
+.inputDate {
+  margin-bottom: 12px;
+}
+
+.error {
+  display: block;
+  height: 10px;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 10px;
+  color: red;
+  margin: 5px 0 0 12px;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 9px;
+  max-width: 585px;
+  background-color: #f0f1f6;
+  margin: 0 0 0 40px;
+  padding: 0 20px;
+}
+
+.descriptionTitle {
+  padding: 0;
+  max-width: 395px;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 31px;
+  color: #000;
+  margin: 20px 0 10px;
+}
+
+.descriptionText {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #000;
+  margin: 12px 0 10px 12px;
+  letter-spacing: -0.24px;
+}
+
+.descriptionBlock {
+  display: flex;
+  flex-direction: row;
+}
+
+.btnBlock {
+  margin: 20px 0 30px 24px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  background-color: #d7e0ff;
+}
+
+.descriptionCheckMark {
+  width: 19.5px;
+  object-fit: contain;
+}

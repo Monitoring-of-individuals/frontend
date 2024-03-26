@@ -1,0 +1,69 @@
+.sources {
+  background: #f0f1f6;
+}
+
+.sources__container {
+  padding: 80px 0 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 760px;
+}
+
+.sources__title {
+  font-family: "Open Sans Hebrew Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  color: #212327;
+  margin: 0 0 72px 0;
+}
+
+.sources__columns-wrapper {
+  padding: 60px;
+  background: #E6ECFF;
+  border-radius: 28px;
+}
+
+.sources__columns {
+  width: 760px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.sources__columns:last-of-type {
+  margin-bottom: 0;
+}
+
+.sources__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sources__image-container {
+  max-width: 160px;
+  max-height: 160px;
+}
+
+.sources__image-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.source__subtitle {
+  font-family: "Open Sans Hebrew", sans-serif;
+  margin: 24px 0 0;
+  color: #212327;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
